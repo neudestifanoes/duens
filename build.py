@@ -19,7 +19,7 @@ import re
 from pathlib import Path
 from datetime import datetime
 
-SITE_TITLE = "duen blog"
+SITE_TITLE = "duen what"
 POSTS_DIR = Path("posts")
 POST_OUTPUT = Path("p")
 ROOT = Path(".")
