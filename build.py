@@ -173,13 +173,14 @@ def parse_post(filepath):
 
 # --- HTML templates ---
 
-def page_head(title, css_path="style.css"):
+def page_head(title, css_path="style.css", root=""):
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title}</title>
+<link rel="icon" type="image/svg+xml" href="{root}favicon.svg">
 <link rel="stylesheet" href="{css_path}">
 </head>
 <body>
@@ -188,7 +189,7 @@ def page_head(title, css_path="style.css"):
 
 def page_nav(home_path="index.html", css_prefix=""):
     return f"""<div id="header">
-<h1><a href="{home_path}">{SITE_TITLE}</a></h1>
+<h1><a href="{home_path}"><img src="{css_prefix}favicon.svg" alt="" class="site-logo">{SITE_TITLE}</a></h1>
 <div id="nav">
 <a href="{home_path}">home</a> &middot;
 <a href="{css_prefix}archive.html">archive</a> &middot;
@@ -204,7 +205,7 @@ PAGE_FOOT = """</div>
 
 
 def build_post_page(post):
-    html = page_head(f"{post['title']} - {SITE_TITLE}", css_path="../style.css")
+    html = page_head(f"{post['title']} - {SITE_TITLE}", css_path="../style.css", root="../")
     html += page_nav(home_path="../index.html", css_prefix="../")
     html += f"""
 <div class="post">
@@ -223,20 +224,40 @@ def build_post_page(post):
     return html
 
 
+def get_post_icon(title):
+    """Pick a notepad/document icon based on the post."""
+    # simple rotation of retro-looking text icons
+    icons = [
+        "&#128196;",  # page facing up
+        "&#128221;",  # memo
+        "&#128195;",  # page with curl
+        "&#128220;",  # clipboard
+        "&#128466;",  # notepad
+    ]
+    return icons[hash(title) % len(icons)]
+
+
 def build_index(posts):
     html = page_head(SITE_TITLE)
+    # override body class for homepage teal desktop
+    html = html.replace("<body>", '<body class="home">')
     html += page_nav()
-    for post in posts[:10]:
-        html += f"""
-<div class="post">
-<div class="post-date">{post['date_display']}</div>
-<h2 class="post-title"><a href="p/{post['slug']}.html">{post['title']}</a></h2>
-<div class="post-body">
-{post['body_html']}
+    html += '<div class="desktop">\n'
+    for post in posts:
+        icon = get_post_icon(post['title'])
+        html += f"""<a class="win-window" href="p/{post['slug']}.html">
+<div class="win-titlebar">
+<span class="win-titlebar-text">{post['title']}</span>
+<div class="win-buttons"><span class="win-btn">_</span><span class="win-btn">&#9633;</span><span class="win-btn">x</span></div>
 </div>
+<div class="win-body">
+<div class="win-icon">{icon}</div>
+<div class="win-label">{post['title']}</div>
 </div>
-<hr>
+<div class="win-statusbar">{post['date_display']}</div>
+</a>
 """
+    html += '</div>\n'
     html += f"""<div id="footer">&copy; {datetime.now().year} {SITE_TITLE}</div>
 """
     html += PAGE_FOOT

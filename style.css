@@ -5,7 +5,7 @@ body {
     font-size: 14px;
     line-height: 1.6;
     color: #333;
-    background-color: #fff;
+    background-color: #008080;
     margin: 0;
     padding: 0;
 }
@@ -24,13 +24,22 @@ body {
     text-transform: lowercase;
 }
 
+.site-logo {
+    width: 64px;
+    height: 64px;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
 #header h1 a {
-    color: #333;
+    color: #fff;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
 }
 
 #header h1 a:hover {
-    color: #000;
+    color: #fff;
 }
 
 #nav {
@@ -40,23 +49,143 @@ body {
 }
 
 #nav a {
-    color: #0000EE;
+    color: #ffff00;
     text-decoration: underline;
 }
 
 #nav a:visited {
-    color: #551A8B;
+    color: #ffff00;
 }
 
 #nav a:hover {
-    color: #FF0000;
+    color: #fff;
 }
 
 hr {
     border: none;
-    border-top: 1px solid #999;
+    border-top: 1px solid #006666;
     margin: 10px 0;
 }
+
+/* ---- HOMEPAGE: Windows 95/98 style tiles ---- */
+
+body.home #container {
+    max-width: 700px;
+}
+
+.desktop {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 15px 0;
+    justify-content: center;
+}
+
+.win-window {
+    width: 260px;
+    background: #c0c0c0;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+    box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    color: #000;
+}
+
+.win-window:hover {
+    border-top-color: #dfdfdf;
+    border-left-color: #dfdfdf;
+}
+
+.win-window:active {
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #dfdfdf;
+}
+
+.win-titlebar {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    color: #fff;
+    font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+.win-titlebar-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.win-buttons {
+    display: flex;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.win-btn {
+    width: 16px;
+    height: 14px;
+    background: #c0c0c0;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #404040;
+    border-bottom: 1px solid #404040;
+    font-family: "Courier New", monospace;
+    font-size: 9px;
+    line-height: 14px;
+    text-align: center;
+    color: #000;
+}
+
+.win-body {
+    padding: 12px 10px;
+    font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
+    font-size: 11px;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+}
+
+.win-icon {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.win-date {
+    font-size: 10px;
+    color: #555;
+}
+
+.win-label {
+    font-size: 11px;
+    color: #000;
+    word-break: break-word;
+}
+
+.win-statusbar {
+    border-top: 1px solid #808080;
+    padding: 2px 4px;
+    font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
+    font-size: 10px;
+    color: #444;
+}
+
+/* ---- INDIVIDUAL POST PAGES ---- */
 
 .post {
     margin: 20px 0;
@@ -64,7 +193,7 @@ hr {
 
 .post-date {
     font-size: 11px;
-    color: #666;
+    color: #aaa;
     font-family: Verdana, Geneva, sans-serif;
 }
 
@@ -72,10 +201,11 @@ hr {
     font-size: 16px;
     margin: 2px 0 8px 0;
     font-weight: bold;
+    color: #fff;
 }
 
 .post-title a {
-    color: #003366;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -85,6 +215,7 @@ hr {
 
 .post-body {
     font-size: 13px;
+    color: #e0e0e0;
 }
 
 .post-body p {
@@ -92,25 +223,27 @@ hr {
 }
 
 .post-body a {
-    color: #0000EE;
+    color: #ffff00;
 }
 
 .post-body a:visited {
-    color: #551A8B;
+    color: #ffcc00;
 }
 
 .post-body a:hover {
-    color: #FF0000;
+    color: #fff;
 }
 
 .post-body h2 {
     font-size: 14px;
     margin: 15px 0 5px 0;
+    color: #fff;
 }
 
 .post-body h3 {
     font-size: 13px;
     margin: 12px 0 5px 0;
+    color: #fff;
 }
 
 .post-body ul {
@@ -123,10 +256,10 @@ hr {
 }
 
 .post-body blockquote {
-    border-left: 2px solid #999;
+    border-left: 2px solid #aaa;
     margin: 10px 0;
     padding: 2px 10px;
-    color: #555;
+    color: #ccc;
 }
 
 .post-body pre {
@@ -150,6 +283,12 @@ hr {
     padding: 0;
 }
 
+h2 {
+    color: #fff;
+}
+
+/* ---- ARCHIVE ---- */
+
 .archive-list {
     list-style: none;
     padding: 0;
@@ -163,26 +302,28 @@ hr {
 .archive-list .archive-date {
     font-family: "Courier New", Courier, monospace;
     font-size: 11px;
-    color: #666;
+    color: #aaa;
     margin-right: 8px;
 }
 
 .archive-list a {
-    color: #0000EE;
+    color: #ffff00;
 }
 
 .archive-list a:visited {
-    color: #551A8B;
+    color: #ffcc00;
 }
+
+/* ---- FOOTER ---- */
 
 #footer {
     font-size: 11px;
-    color: #999;
+    color: #aaa;
     margin: 20px 0;
     font-family: Verdana, Geneva, sans-serif;
 }
 
 #footer a {
-    color: #0000EE;
+    color: #ffff00;
     font-size: 11px;
 }
